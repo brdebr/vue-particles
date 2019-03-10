@@ -17,6 +17,7 @@
     :hoverMode="hoverMode"
     :clickEffect="clickEffect"
     :clickMode="clickMode"
+    :particlesJson="particlesJson"
   ></div>
 </template>
 <script>
@@ -88,6 +89,10 @@
       clickMode: {
         type: String,
         default: 'push'
+      },
+      particlesJson: {
+        type: String,
+        default: ''
       }
     },
     mounted () {
@@ -109,7 +114,8 @@
           this.hoverEffect,
           this.hoverMode,
           this.clickEffect,
-          this.clickMode
+          this.clickMode,
+          this.particlesJson
         )
       })
     },
@@ -129,120 +135,125 @@
         hoverEffect,
         hoverMode,
         clickEffect,
-        clickMode
+        clickMode,
+        particlesJson
       ) {
-        particlesJS(this.id, {
-          "particles": {
-            "number": {
-              "value": particlesNumber,
-              "density": {
-                "enable": true,
-                "value_area": 800
-              }
-            },
-            "color": {
-              "value": color
-            },
-            "shape": {
-              // circle, edge, triangle, polygon, star, image
-              "type": shapeType,
-              "stroke": {
-                "width": 0,
-                "color": "#192231"
-              },
-              "polygon": {
-                "nb_sides": 5
-              }
-            },
-            "opacity": {
-              "value": particleOpacity,
-              "random": false,
-              "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-              }
-            },
-            "size": {
-              "value": particleSize,
-              "random": true,
-              "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-              }
-            },
-            "line_linked": {
-              "enable": lineLinked,
-              "distance": linesDistance,
-              "color": linesColor,
-              "opacity": lineOpacity,
-              "width": linesWidth
-            },
-            "move": {
-              "enable": true,
-              "speed": moveSpeed,
-              "direction": "none",
-              "random": false,
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false,
-              "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-              }
-            }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-              "onhover": {
-                "enable": hoverEffect,
-                "mode": hoverMode
-              },
-              "onclick": {
-                "enable": clickEffect,
-                "mode": clickMode
-              },
-              "onresize": {
-
-                "enable": true,
-                "density_auto": true,
-                "density_area": 400
-
-              }
-            },
-            "modes": {
-              "grab": {
-                "distance": 140,
-                "line_linked": {
-                  "opacity": 1
+        if(particlesJson !== ''){
+          particlesJS.load(this.id, particlesJson);
+        } else {
+          particlesJS(this.id, {
+            "particles": {
+              "number": {
+                "value": particlesNumber,
+                "density": {
+                  "enable": true,
+                  "value_area": 800
                 }
               },
-              "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 8,
-                "speed": 3
+              "color": {
+                "value": color
               },
-              "repulse": {
-                "distance": 200,
-                "duration": 0.4
+              "shape": {
+                // circle, edge, triangle, polygon, star, image
+                "type": shapeType,
+                "stroke": {
+                  "width": 0,
+                  "color": "#192231"
+                },
+                "polygon": {
+                  "nb_sides": 5
+                }
               },
-              "push": {
-                "particles_nb": 4
+              "opacity": {
+                "value": particleOpacity,
+                "random": false,
+                "anim": {
+                  "enable": false,
+                  "speed": 1,
+                  "opacity_min": 0.1,
+                  "sync": false
+                }
               },
-              "remove": {
-                "particles_nb": 2
+              "size": {
+                "value": particleSize,
+                "random": true,
+                "anim": {
+                  "enable": false,
+                  "speed": 40,
+                  "size_min": 0.1,
+                  "sync": false
+                }
+              },
+              "line_linked": {
+                "enable": lineLinked,
+                "distance": linesDistance,
+                "color": linesColor,
+                "opacity": lineOpacity,
+                "width": linesWidth
+              },
+              "move": {
+                "enable": true,
+                "speed": moveSpeed,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                  "enable": false,
+                  "rotateX": 600,
+                  "rotateY": 1200
+                }
               }
-            }
-          },
-          "retina_detect": true
-        });
+            },
+            "interactivity": {
+              "detect_on": "canvas",
+              "events": {
+                "onhover": {
+                  "enable": hoverEffect,
+                  "mode": hoverMode
+                },
+                "onclick": {
+                  "enable": clickEffect,
+                  "mode": clickMode
+                },
+                "onresize": {
+  
+                  "enable": true,
+                  "density_auto": true,
+                  "density_area": 400
+  
+                }
+              },
+              "modes": {
+                "grab": {
+                  "distance": 140,
+                  "line_linked": {
+                    "opacity": 1
+                  }
+                },
+                "bubble": {
+                  "distance": 400,
+                  "size": 40,
+                  "duration": 2,
+                  "opacity": 8,
+                  "speed": 3
+                },
+                "repulse": {
+                  "distance": 200,
+                  "duration": 0.4
+                },
+                "push": {
+                  "particles_nb": 4
+                },
+                "remove": {
+                  "particles_nb": 2
+                }
+              }
+            },
+            "retina_detect": true
+          });
+        }
       }
 
     }
